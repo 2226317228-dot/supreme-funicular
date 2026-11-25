@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BDSM 属性测试 · 你是哪一种人</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- ===== 背景剪影（纯装饰） ===== -->
+<div class="ambient" aria-hidden="true">
+  <!-- 钥匙 -->
+  <svg class="a1" viewBox="0 0 100 160" stroke-width="3">
+    <circle cx="50" cy="34" r="20"/><path d="M50 54 V148 M50 118 h18 M50 134 h13"/>
+  </svg>
+  <!-- 缎带 -->
+  <svg class="a2" viewBox="0 0 120 90" stroke-width="3">
+    <path d="M60 45 C30 18 8 26 12 45 C16 64 40 62 60 45 C80 62 104 64 108 45 C112 26 90 18 60 45"/>
+    <path d="M60 45 V84"/>
+  </svg>
+  <!-- 蜡烛 -->
+  <svg class="a3" viewBox="0 0 80 150" stroke-width="3">
+    <ellipse cx="40" cy="60" rx="20" ry="7"/><path d="M20 60 V132 C20 144 60 144 60 132 V60"/>
+    <path d="M40 44 C34 34 34 24 40 12 C46 24 46 34 40 44"/>
+  </svg>
+  <!-- 锁扣 -->
+  <svg class="a4" viewBox="0 0 120 70" stroke-width="3">
+    <rect x="8" y="26" width="44" height="34" rx="6"/><rect x="68" y="26" width="44" height="34" rx="6"/>
+    <path d="M52 40 C58 34 62 34 68 40"/>
+  </svg>
+</div>
+
+<div class="shell">
+  <!-- 顶栏 -->
+  <div class="topbar">
+    <div class="brand">
+      <b>ATTRIBUTE QUIZ</b>
+      <span>BDSM · 人格取向探索</span>
+    </div>
+    <div class="counter" id="counter" style="visibility:hidden"><b id="qNow">1</b> / 50</div>
+  </div>
+  <div class="progress-track" id="track" style="visibility:hidden"><div class="progress-fill" id="fill"></div></div>
+
+  <!-- ===== 视图：首页 ===== -->
+  <section class="view active" id="view-intro">
+    <div class="hero">
+      <div class="kicker"><i></i><span>Fifty Quiet Questions</span><i></i></div>
+      <h1>你是<em>哪一种</em><br>掌控的人</h1>
+      <div class="en">A Quiet Quiz of Power, Trust &amp; Endurance</div>
+      <p class="lede">50 道生活化的选择题，不谈姿态，只谈<b>你默认怎么处理权力、信任和强度</b>。没有正确答案，只有你更习惯的那一边。</p>
+
+      <div class="axis">
+        <div><b>Dom</b><span>掌控</span></div>
+        <div><b>S</b><span>施与</span></div>
+        <div><b>Sub</b><span>交付</span></div>
+        <div><b>M</b><span>承重</span></div>
+      </div>
+
+      <div class="cta-wrap">
+        <label class="consent" id="consentRow">
+          <input type="checkbox" id="adultOk">
+          <span class="box" aria-hidden="true"></span>
+          <span>我已年满 18 岁，理解本测试仅作自我观察与娱乐</span>
+        </label>
+        <button class="btn-primary" id="startBtn" disabled>开 始 测 试</button>
+        <div class="meta-line">50 题 · 约 6 分钟 · 无需注册</div>
+      </div>
+
+      <div class="disclaimer">
+        <b>阅读前：</b>本测试面向成年人，仅作自我观察与娱乐之用，<b>不构成任何心理或医学诊断</b>，也不涉及具体行为指导。所有题目均为生活情境抽象，请按第一直觉选择，不必纠结"应该"怎样。
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 视图：答题 ===== -->
+  <section class="view" id="view-quiz">
+    <div class="q-stage">
+      <div class="q-index" id="qIndex">QUESTION 01</div>
+      <div class="q-cat" id="qCat">日常习惯</div>
+      <div id="qBody"></div>
+      <div class="q-hint">凭第一反应作答 · 中途可返回上一题</div>
+      <div style="margin-top:16px;display:flex;justify-content:center">
+        <button class="btn-mini" id="backBtn" style="padding:11px 22px;font-size:12px;letter-spacing:.14em">返回上一题</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 视图：结果 ===== -->
+  <section class="view" id="view-result">
+    <div class="res-head">
+      <div class="res-badge" id="resBadge">RESULT</div>
+      <div class="emblem"><b id="resLetter">D</b></div>
+      <h2 class="res-name" id="resName">—</h2>
+      <div class="res-en" id="resEn">—</div>
+      <p class="res-quote" id="resQuote">—</p>
+    </div>
+
+    <div class="spectrum">
+      <div class="spectrum-title">你的四维光谱</div>
+      <div class="bars" id="bars"></div>
+      <div class="spectrum-note">四维加权计分 · 归一化为构成比</div>
+    </div>
+    <div id="mixBox"></div>
+
+    <div class="panel">
+      <h3><i></i>性格特点</h3>
+      <ul id="resTraits"></ul>
+    </div>
+    <div class="panel">
+      <h3><i></i>你的开关</h3>
+      <ul id="resSwitches"></ul>
+    </div>
+    <div class="panel">
+      <h3><i></i>为什么是你</h3>
+      <p id="resReason"></p>
+    </div>
+    <div class="panel">
+      <h3><i></i>隐藏优势</h3>
+      <p id="resStrength"></p>
+    </div>
+    <div class="panel egg">
+      <h3><i></i>彩蛋</h3>
+      <p id="resEgg"></p>
+    </div>
+
+    <div class="share-card" id="shareCard">
+      <div class="sc-brand">ATTRIBUTE QUIZ · 2026</div>
+      <div class="sc-name" id="scName">—</div>
+      <div class="sc-line" id="scLine">—</div>
+      <div class="bars" id="scBars" style="margin-bottom:16px"></div>
+      <div class="sc-foot">50 QUESTIONS · ONE ANSWER</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-primary" id="posterBtn" style="max-width:none">生 成 分 享 卡</button>
+      <div class="row">
+        <button class="btn-mini" id="copyBtn">复制分享文案</button>
+        <button class="btn-mini" id="againBtn">再测一次</button>
+      </div>
+      <button class="btn-ghost" id="homeBtn" style="max-width:none">回到首页</button>
+    </div>
+  </section>
+</div>
+
+<!-- ===== 分享海报（供截图） ===== -->
+<div class="poster-mask" id="posterMask">
+  <div class="poster" id="poster">
+    <div>
+      <div class="p-brand">ATTRIBUTE QUIZ · BDSM</div>
+      <div class="p-letter" id="pLetter">D</div>
+      <div class="p-name" id="pName">—</div>
+      <div class="p-en" id="pEn">—</div>
+      <div class="p-quote" id="pQuote">—</div>
+      <div class="p-tag" id="pTag">—</div>
+      <div class="p-bars" id="pBars"></div>
+      <div class="p-kw" id="pKw"></div>
+      <div class="p-cta"><i></i><span>你 在 哪 一 侧</span><i></i></div>
+    </div>
+    <div>
+      <div class="p-foot">50 QUESTIONS · ONE ANSWER</div>
+      <div class="p-foot" style="margin-top:6px;letter-spacing:.12em">仅供自我观察 · 不具备诊断意义</div>
+    </div>
+    <button class="poster-close" id="posterClose" aria-label="关闭">✕</button>
+  </div>
+</div>
+<div class="poster-tip" id="posterTip" style="display:none">长按海报或直接截图保存</div>
+
+<div class="toast" id="toast">已复制</div>
+
+<script src="app.js"></script>
+</body>
+</html>
